@@ -22,39 +22,31 @@ TypePtr TypeChecker::check(AST::NodePtr node) {
 	}
 #define CHECK_NODE(type)                                     \
   if (auto n = std::dynamic_pointer_cast<AST::type>(node)) { \
-		std::cout<<node->to_string()<<std::endl;								 \
+		std::cout<<"[*] "<<node->to_string()<<std::endl;								 \
     return check##type(n);                                   \
   }
 
   // 递归检查 AST 的每个节点
   // 如果你添加了新的 AST 节点类型，记得在这里添加对应的检查函数
-  CHECK_NODE(CompUnit)
+	CHECK_NODE(CompUnit)
 	CHECK_NODE(Decl)
-
-  CHECK_NODE(FuncDef)
-//	CHECK_NODE(FuncFParam)
-//	CHECK_NODE(FuncFParams)
-
-  CHECK_NODE(VarDecl)
-	
+	CHECK_NODE(FuncDef)
+	CHECK_NODE(VarDecl)
 	CHECK_NODE(ArrDecl)
 	CHECK_NODE(ArrDef)
 	CHECK_NODE(ArrLists)
-
-  CHECK_NODE(Block)
-  CHECK_NODE(AssignStmt)
-  CHECK_NODE(ReturnStmt)
+	CHECK_NODE(Block)
+	CHECK_NODE(AssignStmt)
+	CHECK_NODE(ReturnStmt)
 	CHECK_NODE(IfStmt)
 	CHECK_NODE(WhileStmt)
 	CHECK_NODE(NullStmt)
-	
 	CHECK_NODE(InitVal)
-  CHECK_NODE(LVal)
-  CHECK_NODE(IntConst)
-  CHECK_NODE(FuncCall)
-//	CHECK_NODE(ExpList)
-  CHECK_NODE(UnaryExp)
-  CHECK_NODE(BinaryExp)
+	CHECK_NODE(LVal)
+	CHECK_NODE(IntConst)
+	CHECK_NODE(FuncCall)
+	CHECK_NODE(UnaryExp)
+	CHECK_NODE(BinaryExp)
 
 #undef CHECK_NODE
 
